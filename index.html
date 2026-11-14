@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>디에이치방배공식카페(디방카) 글 보관함</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div id="app" hidden>
+    <header class="masthead">
+      <h1>디에이치방배공식카페(디방카) <span class="keep">글 보관함</span></h1>
+      <p class="scope" id="scope"></p>
+    </header>
+    <main class="layout">
+      <section class="finder" aria-label="글 찾기">
+        <form class="search" role="search" id="search">
+          <input class="query" id="q" type="search" autocomplete="off"
+                 placeholder="찾을 낱말 (예: 지역권, 집행부)" aria-label="찾을 낱말">
+          <fieldset class="row" id="fields">
+            <legend>찾을 곳</legend>
+            <label class="toggle"><input type="checkbox" value="subject" checked><span>제목</span></label>
+            <label class="toggle"><input type="checkbox" value="body" checked><span>본문</span></label>
+            <label class="toggle"><input type="checkbox" value="writer" checked><span>작성자</span></label>
+            <label class="toggle"><input type="checkbox" value="comment" checked><span>댓글</span></label>
+            <label class="toggle"><input type="checkbox" value="commenter" checked><span>댓글 작성자</span></label>
+          </fieldset>
+          <div class="row">
+            <span class="row-label">기간</span>
+            <input class="date" type="date" id="from" aria-label="시작일">
+            <span aria-hidden="true">~</span>
+            <input class="date" type="date" id="to" aria-label="종료일">
+            <button class="link-btn" type="button" id="all-dates">전체 기간</button>
+          </div>
+          <div class="row">
+            <label class="row-label" for="state">상태</label>
+            <select class="date" id="state">
+              <option value="all">전체</option>
+              <option value="removed">삭제된 글·댓글</option>
+              <option value="deleted">[삭제]된 글</option>
+              <option value="revised">[수정]된 글</option>
+            </select>
+          </div>
+          <div class="row row-top">
+            <span class="row-label">게시판</span>
+            <details class="boards" id="boards">
+              <summary id="boards-summary">전체</summary>
+              <div class="board-panel">
+                <div class="board-actions">
+                  <button class="link-btn" type="button" id="boards-all">모두 선택</button>
+                  <button class="link-btn" type="button" id="boards-none">모두 해제</button>
+                </div>
+                <div class="board-list" id="board-list"></div>
+              </div>
+            </details>
+          </div>
+        </form>
+        <p class="count" id="count" aria-live="polite"></p>
+        <ol class="ledger" id="results"></ol>
+      </section>
+
+      <section class="reader" id="reader" aria-label="글 보기">
+        <div class="reader-bar" id="reader-bar" hidden>
+          <button class="tool back" type="button" id="back">목록</button>
+          <div class="reader-head">
+            <h2 id="r-title"></h2>
+            <p class="meta" id="r-meta"></p>
+            <div class="status-line" id="r-status" hidden></div>
+          </div>
+          <div class="tools">
+            <button class="tool" type="button" id="prev">이전<span class="wide"> 글</span></button>
+            <button class="tool" type="button" id="next">다음<span class="wide"> 글</span></button>
+            <a class="tool" id="download" download><span class="wide">이미지 </span>저장</a>
+            <a class="tool" id="original" target="_blank" rel="noopener noreferrer" title="카페 회원만 열 수 있습니다"><span class="wide">카페에서 열기</span><span class="narrow">원문</span></a>
+          </div>
+          <ul class="files" id="r-files" aria-label="첨부파일" hidden></ul>
+          <ul class="files versions" id="r-versions" aria-label="버전" hidden></ul>
+        </div>
+        <div class="sheet" id="sheet">
+          <p class="placeholder" id="placeholder">왼쪽 목록에서 글을 고르면 캡처한 화면이 여기에 나옵니다.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
